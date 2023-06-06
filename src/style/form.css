@@ -1,0 +1,185 @@
+:root {
+    --color: #fff;
+    --background: #c8e8f1;
+    --black-text: rgb(68, 66, 66);
+    --prueba: (180deg, #21c8f6, #637bff);
+    --purple-color: #d9a2e1;
+}
+
+body {
+    background-image: radial-gradient(#d9a2e1 0.5px, transparent 0.5px),
+        radial-gradient(#d9a2e1 0.5px, #e5e5f7 0.5px);
+}
+
+.card {
+    width: 100%;
+    background-color: var(--color);
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+    margin: 2rem;
+    padding: 1.6em 2.3em;
+    overflow: hidden;
+    width: 30rem;
+    height: 35rem;
+    display: grid;
+    gap: 2.5em;
+}
+
+.gif {
+    position: absolute;
+    display: none;
+}
+
+.gif-show {
+    display: flex;
+}
+
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.flex-inputs {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+}
+
+/* form */
+
+.form {
+    margin: auto;
+    max-width: 400px;
+    margin-top: 3em;
+    display: grid;
+    gap: 2.5em;
+}
+
+.alert-input {
+    display: none;
+}
+
+.alert-input-act {
+    display: block;
+    color: red;
+    font-size: 12px;
+    position: absolute;
+}
+
+.form-group {
+    position: relative;
+    --color: #5757577e;
+}
+
+.form-input:focus+.form-label,
+:not(:placeholder-shown)+.form-label {
+    transform: translateY(-12px) scale(.7);
+    transform-origin: top left;
+    color: #637bff;
+}
+
+.form-input {
+    width: 100%;
+    background: none;
+    color: #706c6c;
+    font-size: 1rem;
+    padding: .6em .3em;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--color);
+    font-family: 'Roboto',
+        sans-serif;
+}
+
+.form-label {
+    color: var(--color);
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 5px;
+    transform: translateY(5px);
+    /* hace que baje mas los labels  */
+    transition: transform .5s, color .3s;
+}
+
+.form-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #637bff;
+    transform: scale(0);
+    transform: left bottom;
+    transition: transform .4s;
+}
+
+.form-input:focus~.form-line,
+.form-input:not(:placeholder-shown)~.form-line {
+    transform: scale(1);
+}
+
+#save-reg,
+#save-reg:hover {
+    border-radius: .5em;
+    background-color: #637bff;
+    color: #fff;
+    border: none;
+    font-family: 'Roboto',
+        sans-serif;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 1rem;
+    padding: .8em 0;
+}
+
+.styled-select {
+    width: 240px;
+    height: 34px;
+    overflow: hidden;
+    background-image: radial-gradient(#d9a2e1 0.5px, transparent 0.5px),
+        radial-gradient(#d9a2e1 0.5px, #e5e5f7 0.5px);
+    border: 1px solid #ccc;
+}
+
+.sidebar-box select {
+    cursor: pointer;
+    display: block;
+    padding: 5px 10px;
+    min-width: 14em;
+    -webkit-appearance: none;
+    height: 34px;
+    /* background-color: #ffffff; */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+        linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+}
+
+#dropdownDate {
+    padding-top: 13px;
+}
+
+#dropdownAssigne {
+    padding-top: 13px;
+    padding-right: 10px;
+}
+
+@media (max-width:500px) {
+    .form-label {
+        font-size: 12px;
+        transform: translateY(-4px);
+    }
+
+    .form-input:focus+.form-label,
+    :not(:placeholder-shown)+.form-label {
+        transform: translateY(-12px) scale(.7);
+        transform-origin: top left;
+        color: #637bff;
+    }
+
+
+}
