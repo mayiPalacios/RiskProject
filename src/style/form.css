@@ -19,6 +19,7 @@ body {
     margin: 2rem;
     padding: 1.6em 2.3em;
     overflow: hidden;
+    min-width: 30rem;
     width: 30rem;
     height: 35rem;
     display: grid;
@@ -46,6 +47,12 @@ body {
     flex-direction: row;
     gap: 18px;
     margin-top: 7em;
+}
+
+.flex-fileDocument {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
 }
 
 /* form */
@@ -189,13 +196,28 @@ body {
 
 }
 
-.show__convert--doc {
+.show__convert--doc-container {
     height: auto;
-    min-height: 12vh;
-    min-width: 12vw;
+    min-height: 35rem;
+    min-width: 60vw;
     background-color: #f7f7f7;
+}
+
+.show__convert--doc {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: auto;
 }
 
 .container {
     display: flex;
+}
+
+@media (max-width:1000px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+
 }
