@@ -62,7 +62,7 @@ const Form = () => {
           formData.append("file", docu);
 
           response = await axios.post(
-            `http://localhost:3000/convert_txt_to_json/;/${key}`,
+            `http://localhost:3000/convert_txt_to_json/${delimiter}/${key}`,
             formData
           );
 
@@ -176,15 +176,27 @@ const Form = () => {
             </select>
           </div>
 
-          <div className="flex-fileDocument">
-            <div className="form-group">
-              <input type="file" accept={typeD} onChange={handleFileChange} />
-            </div>
+          {typeD !== "" ? (
+            <div className="flex-fileDocument">
+              <div className="form-group">
+                <input type="file" accept={typeD} onChange={handleFileChange} />
+                <span className="form-line"></span>
+                <p
+                  className={`alert-input-last ${
+                    isFieldEmpty ? "" : "alert-input"
+                  }  `}
+                >
+                  This section is mandatory
+                </p>
+              </div>
 
-            <div className="form-group">
-              <button onClick={handleDownload}>Download</button>
+              <div className="form-group">
+                <button onClick={handleDownload}>Download</button>
+              </div>
             </div>
-          </div>
+          ) : (
+            ""
+          )}
 
           <button onClick={fetchDocument} id="save-reg">
             Save
