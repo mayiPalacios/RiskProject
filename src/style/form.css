@@ -46,7 +46,10 @@ body {
     display: flex;
     flex-direction: row;
     gap: 18px;
-    margin-top: 7em;
+}
+
+.mt-1 {
+    margin-top: 1em;
 }
 
 .flex-fileDocument {

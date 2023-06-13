@@ -46,10 +46,16 @@ const Form = () => {
       switch (caseD) {
         case "txt to xml":
           formData.append("file", docu);
+          formData.append("privateKey", key);
 
           response = await axios.post(
-            `http://localhost:3000/convert_txt_to_xml/${delimiter}/${key}`,
-            formData
+            `http://localhost:8080/convert_txt_to_xml/${delimiter}`,
+            formData, 
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              },
+            }
           );
 
           setDataText(response.data);
@@ -60,10 +66,16 @@ const Form = () => {
 
         case ".txt":
           formData.append("file", docu);
+          formData.append("privateKey", key);
 
           response = await axios.post(
-            `http://localhost:3000/convert_txt_to_json/${delimiter}/${key}`,
-            formData
+            `http://localhost:8080/convert_txt_to_json/${delimiter}`,
+            formData, 
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              },
+            }
           );
 
           setDataText(JSON.stringify(response.data));
@@ -76,9 +88,15 @@ const Form = () => {
           break;
         case ".XML":
           formData.append("file", docu);
+          formData.append("publicKey", key);
           response = await axios.post(
-            `http://localhost:3000/convert_xml_to_txt/${delimiter}/${key}`,
-            formData
+            `http://localhost:8080/convert_xml_to_txt/${delimiter}`,
+            formData, 
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              },
+            }
           );
           setDataText(response.data);
           setFileDownload(new Blob([response.data], { type: "text/plain" }));
@@ -86,9 +104,15 @@ const Form = () => {
 
         case ".json":
           formData.append("file", docu);
+          formData.append("publicKey", key);
           response = await axios.post(
-            `http://localhost:3000/convert_json_to_txt/${delimiter}/${key}`,
-            formData
+            `http://localhost:8080/convert_json_to_txt/${delimiter}`,
+            formData, 
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              },
+            }
           );
           setDataText(response.data);
           setFileDownload(new Blob([response.data], { type: "text/plain" }));
@@ -138,18 +162,28 @@ const Form = () => {
                 This section is mandatory
               </p>
             </div>
-
+          </div>
+          <div className="flex-inputs mt-1">
             <div className="form-group">
-              <input
+              {/* <input
                 type="text"
                 className="form-input"
                 name="last-name"
                 id="last-name"
                 placeholder=" "
                 onChange={handleKey}
-              />
+              /> */}
+              <textarea
+                name="last-name"
+                id="last-name"
+                cols="30"
+                rows="10"
+                className="form-input"
+                placeholder=" "
+                onChange={handleKey}
+              ></textarea>
               <label for="" className="form-label">
-                Encryption key
+                Encryption / Decryption key
               </label>
               <span className="form-line"></span>
               <p
@@ -162,7 +196,7 @@ const Form = () => {
             </div>
           </div>
 
-          <div className="sidebar-box">
+          <div className="sidebar-box mt-1">
             <select
               className="styled-select"
               id="select-exp"
