@@ -50,18 +50,36 @@ const Form = () => {
 
           response = await axios.post(
             `http://localhost:8080/convert_txt_to_xml/${delimiter}`,
-            formData, 
+            formData,
             {
               headers: {
-                'Content-Type': 'multipart/form-data'
+                "Content-Type": "multipart/form-data",
               },
             }
           );
 
           setDataText(response.data);
+          var parser = new DOMParser();
+
+          // Analizar el XML
+          var xmlDoc = parser.parseFromString(response.data, "text/xml");
+
+          // Obtener el elemento raíz del documento
+          var rootElement = xmlDoc.documentElement;
+
+          // Verificar si el elemento raíz no tiene hijos
+          var isEmpty = rootElement.childNodes.length === 0;
+
+          if (isEmpty) {
+            window.alert(
+              "verifica bien los datos que envias ya que alguno de ellos no es correcto"
+            );
+          }
+
           setFileDownload(
             new Blob([response.data], { type: "application/xml" })
           );
+
           break;
 
         case ".txt":
@@ -70,14 +88,19 @@ const Form = () => {
 
           response = await axios.post(
             `http://localhost:8080/convert_txt_to_json/${delimiter}`,
-            formData, 
+            formData,
             {
               headers: {
-                'Content-Type': 'multipart/form-data'
+                "Content-Type": "multipart/form-data",
               },
             }
           );
 
+          if (JSON.stringify(response.data) === "[]") {
+            window.alert(
+              "revisa bien los delimitadores o el contenido del archivo"
+            );
+          }
           setDataText(JSON.stringify(response.data));
           setFileDownload(
             new Blob([JSON.stringify(response.data)], {
@@ -91,10 +114,10 @@ const Form = () => {
           formData.append("publicKey", key);
           response = await axios.post(
             `http://localhost:8080/convert_xml_to_txt/${delimiter}`,
-            formData, 
+            formData,
             {
               headers: {
-                'Content-Type': 'multipart/form-data'
+                "Content-Type": "multipart/form-data",
               },
             }
           );
@@ -107,10 +130,10 @@ const Form = () => {
           formData.append("publicKey", key);
           response = await axios.post(
             `http://localhost:8080/convert_json_to_txt/${delimiter}`,
-            formData, 
+            formData,
             {
               headers: {
-                'Content-Type': 'multipart/form-data'
+                "Content-Type": "multipart/form-data",
               },
             }
           );
@@ -121,7 +144,7 @@ const Form = () => {
           break;
       }
     } catch (error) {
-      console.error("error :(", error);
+      window.alert("error :( verifica bien los datos que envias", error);
       console.log("Error response:", error.response);
     }
   };
@@ -165,14 +188,6 @@ const Form = () => {
           </div>
           <div className="flex-inputs mt-1">
             <div className="form-group">
-              {/* <input
-                type="text"
-                className="form-input"
-                name="last-name"
-                id="last-name"
-                placeholder=" "
-                onChange={handleKey}
-              /> */}
               <textarea
                 name="last-name"
                 id="last-name"
