@@ -47,9 +47,9 @@ const Form = () => {
         case "txt to xml":
           formData.append("file", docu);
           formData.append("privateKey", key);
-
+//https://riesgos-abdksh8ph-00098619-ucaedusv.vercel.app
           response = await axios.post(
-            `http://localhost:8080/convert_txt_to_xml/${delimiter}`,
+            `https://heliotrope-fantasy-perfume.glitch.me/convert_txt_to_xml/${delimiter}`,
             formData,
             {
               headers: {
@@ -87,7 +87,7 @@ const Form = () => {
           formData.append("privateKey", key);
 
           response = await axios.post(
-            `http://localhost:8080/convert_txt_to_json/${delimiter}`,
+            `https://heliotrope-fantasy-perfume.glitch.me/convert_txt_to_json/${delimiter}`,
             formData,
             {
               headers: {
@@ -113,7 +113,7 @@ const Form = () => {
           formData.append("file", docu);
           formData.append("publicKey", key);
           response = await axios.post(
-            `http://localhost:8080/convert_xml_to_txt/${delimiter}`,
+            `https://heliotrope-fantasy-perfume.glitch.me/convert_xml_to_txt/${delimiter}`,
             formData,
             {
               headers: {
@@ -129,7 +129,7 @@ const Form = () => {
           formData.append("file", docu);
           formData.append("publicKey", key);
           response = await axios.post(
-            `http://localhost:8080/convert_json_to_txt/${delimiter}`,
+            `https://heliotrope-fantasy-perfume.glitch.me/convert_json_to_txt/${delimiter}`,
             formData,
             {
               headers: {
